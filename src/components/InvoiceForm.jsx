@@ -20,17 +20,15 @@ const InvoiceForm = () => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const isCopy = location.pathname.includes("create");
-  const isEdit = location.pathname.includes("edit");
+  const isCopy = location.pathname.includes("create"); // True or False
+  const isEdit = location.pathname.includes("edit"); // True or False
 
   const [isOpen, setIsOpen] = useState(false);
   const [copyId, setCopyId] = useState("");
   const { getOneInvoice, listSize } = useInvoiceListData();
+  
   const [formData, setFormData] = useState(
-    isEdit
-      ? getOneInvoice(params.id)
-      : isCopy && params.id
-      ? {
+    isEdit ? getOneInvoice(params.id) : isCopy && params.id ? {
           ...getOneInvoice(params.id),
           id: generateRandomId(),
           invoiceNumber: listSize + 1,
